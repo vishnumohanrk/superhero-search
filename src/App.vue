@@ -3,11 +3,13 @@
     <BaseHeader />
     <InputForm v-model="value" @submit="submit" />
     <p>{{ txt }}</p>
+    <div class="ui active centered inline loader" v-if="loading"></div>
     <BaseFooter />
   </div>
 </template>
 
 <script>
+import APIResp from './utils/APIResp';
 import InputForm from './components/InputForm';
 import BaseHeader from './components/BaseComp/BaseHeader';
 import BaseFooter from './components/BaseComp/BaseFooter';
@@ -23,12 +25,23 @@ export default {
     return {
       value: '',
       txt: 'Search To See',
+      loading: false,
+      data: [],
     };
   },
 
   methods: {
     submit() {
+      this.loading = true;
       this.txt = `You Searched for ${this.value}`;
+      APIResp(this.value)
+        .then(res => {
+          if (!res.error) {
+            return (this.data = res);
+          }
+          return (this.txt = `Try Again`);
+        })
+        .finally(() => (this.loading = false));
       this.value = '';
     },
   },

@@ -8,6 +8,7 @@
           placeholder="Search For SuperHero"
           :value="value"
           @input="$emit('input', $event.target.value)"
+          required
         />
       </label>
     </div>
