@@ -4,6 +4,7 @@
     <InputForm v-model="value" @submit="submit" />
     <p>{{ txt }}</p>
     <div class="ui active centered inline loader" v-if="loading"></div>
+    <CardGroup v-if="data.length" :data="data" />
     <BaseFooter />
   </div>
 </template>
@@ -13,12 +14,14 @@ import APIResp from './utils/APIResp';
 import InputForm from './components/InputForm';
 import BaseHeader from './components/BaseComp/BaseHeader';
 import BaseFooter from './components/BaseComp/BaseFooter';
+import CardGroup from './components/CardGrp';
 
 export default {
   components: {
     InputForm,
     BaseHeader,
     BaseFooter,
+    CardGroup,
   },
 
   data() {
