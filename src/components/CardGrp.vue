@@ -1,5 +1,5 @@
 <template>
-  <div class="ui centered cards">
+  <div id="group" class="ui centered cards">
     <CardItem v-for="i in data" :item="i" :key="i.id" />
   </div>
 </template>
@@ -15,3 +15,9 @@ export default {
   props: ['data'],
 };
 </script>
+
+<style scoped>
+#group {
+  margin-top: 1.5rem;
+}
+</style>

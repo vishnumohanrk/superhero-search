@@ -1,10 +1,14 @@
 <template>
-  <div class="ui move up reveal">
-    <div class="visible content">
-      <CardVisible v-bind="item" />
-    </div>
-    <div class="hidden content">
-      <CardHidden v-bind="item" />
+  <div style="margin:1.25rem">
+    <div :class="`ui card ${color}`">
+      <div class="ui move up reveal">
+        <div class="ui visible content">
+          <CardVisible v-bind="item" />
+        </div>
+        <div class="ui hidden content">
+          <CardHidden v-bind="item" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -20,5 +24,18 @@ export default {
   },
 
   props: ['item'],
+
+  computed: {
+    color() {
+      switch (this.item.alignment) {
+        case 'bad':
+          return 'red';
+        case 'good':
+          return 'green';
+        default:
+          return 'blue';
+      }
+    },
+  },
 };
 </script>

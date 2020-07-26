@@ -3,7 +3,7 @@
     <BaseHeader />
     <InputForm v-model="value" @submit="submit" />
     <p>{{ txt }}</p>
-    <div class="ui active centered inline loader" v-if="loading"></div>
+    <BaseLoader v-if="loading" />
     <CardGroup v-if="data.length" :data="data" />
     <BaseFooter />
   </div>
@@ -14,6 +14,7 @@ import APIResp from './utils/APIResp';
 import InputForm from './components/InputForm';
 import BaseHeader from './components/BaseComp/BaseHeader';
 import BaseFooter from './components/BaseComp/BaseFooter';
+import BaseLoader from './components/BaseComp/Loader';
 import CardGroup from './components/CardGrp';
 
 export default {
@@ -22,6 +23,7 @@ export default {
     BaseHeader,
     BaseFooter,
     CardGroup,
+    BaseLoader,
   },
 
   data() {
@@ -36,13 +38,14 @@ export default {
   methods: {
     submit() {
       this.loading = true;
-      this.txt = `You Searched for ${this.value}`;
+      this.txt = `You Searched for ${this.value}. Hover to reveal`;
       APIResp(this.value)
         .then(res => {
           if (!res.error) {
             return (this.data = res);
           }
-          return (this.txt = `Try Again`);
+          this.data = [];
+          return (this.txt = `Check the search term. Try hyphen instead of space something like that.`);
         })
         .finally(() => (this.loading = false));
       this.value = '';

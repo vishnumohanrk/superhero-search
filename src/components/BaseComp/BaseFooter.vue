@@ -10,6 +10,6 @@ export default {};
 
 <style scoped>
 footer {
-  margin-top: 1.25rem;
+  margin: 1.25rem;
 }
 </style>

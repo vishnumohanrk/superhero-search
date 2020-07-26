@@ -1,12 +1,15 @@
 <template>
-  <div class="ui card">
+  <div style="margin: 1.5rem;">
     <div class="ui mini rounded image">
-      <img :src="img" :alt="name" />
+      <img :src="img" :alt="name" @error="imgError" ref="img" />
     </div>
+    <p style="margin-top:0.5rem">
+      <strong>Place Of Birth: </strong>{{ placeOfBirth }}
+    </p>
     <ProgressBar
       v-for="(value, label) in powerstats"
       :label="label"
-      :value="value"
+      :value="Number(value) || 0"
       :key="label"
     />
     <p><strong>Alignment: </strong>{{ alignment }}</p>
@@ -26,6 +29,7 @@ export default {
     'id',
     'name',
     'powerstats',
+    'placeOfBirth',
     'fullName',
     'firstAppearance',
     'publisher',
@@ -34,5 +38,12 @@ export default {
     'groups',
     'img',
   ],
+
+  methods: {
+    imgError() {
+      return (this.$refs.img.src =
+        'https://via.placeholder.com/480x640?text=Image%20Not%20Found');
+    },
+  },
 };
 </script>

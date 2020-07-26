@@ -1,17 +1,19 @@
 <template>
   <div class="ui card">
     <div class="image">
-      <img :src="img" :alt="name" />
+      <img :src="img" :alt="name" @error="imgError" ref="img" />
     </div>
     <div class="content">
-      <p class="header">{{ name }}</p>
-      <p class="meta">{{ fullName }}</p>
-      <p><strong>Occupation: </strong>{{ occupation }}</p>
-      <p><strong>Groups: </strong>{{ groups }}</p>
+      <div class="header">{{ name }}</div>
+      <div class="meta">{{ fullName }}</div>
+      <div style="margin-top:1rem">
+        <p><strong>Occupation: </strong>{{ occupation }}</p>
+        <p><strong>Groups: </strong>{{ groups }}</p>
+      </div>
     </div>
     <div class="extra content">
       <i aria-hidden="true" class="book icon"></i>
-      <p>First Appearance: {{ firstAppearance }}</p>
+      First Appearance: {{ firstAppearance }}
     </div>
   </div>
 </template>
@@ -22,6 +24,7 @@ export default {
     'id',
     'name',
     'powerstats',
+    'placeOfBirth',
     'fullName',
     'firstAppearance',
     'publisher',
@@ -30,5 +33,12 @@ export default {
     'groups',
     'img',
   ],
+
+  methods: {
+    imgError() {
+      return (this.$refs.img.src =
+        'https://via.placeholder.com/480x640?text=Image%20Not%20Found');
+    },
+  },
 };
 </script>
