@@ -1,3 +1,4 @@
+import NextHead from 'next/head';
 import { useState } from 'react';
 
 import AppForm from '../components/AppForm';
@@ -31,7 +32,11 @@ const AppHome = () => {
 
   return (
     <>
-      <AppForm shouldDisable={false} onSubmit={handleSubmit} />
+      <NextHead>
+        <title>SuperHero Search</title>
+        <meta name="description" content="SuperHero Search" />
+      </NextHead>
+      <AppForm shouldDisable={txt === 'LOADING...'} onSubmit={handleSubmit} />
       <p className="text-center mt-4">{txt}</p>
       {data ? <CardContainer dataList={data} /> : null}
     </>
