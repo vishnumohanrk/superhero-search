@@ -7,7 +7,7 @@ const Card = (props: ICharacter) => {
 
   const borderBottomColor = alignment === 'bad' ? '#EF4444' : alignment === 'good' ? '#22C55E' : '#3B82F6';
 
-  const cls = `flex flex-col justify-center items-center`;
+  const cls = `flex flex-col items-center`;
 
   return (
     <div
@@ -15,7 +15,7 @@ const Card = (props: ICharacter) => {
       style={{ borderBottomColor, borderBottomWidth: '3px' }}
     >
       <div
-        className={`${cls} relative z-10 transform transition-transform ease-in-out duration-200 group-hover:-translate-y-full bg-white`}
+        className={`${cls} relative z-10 transform transition-transform ease-in-out duration-200 group-hover:-translate-y-full bg-white h-full`}
       >
         <div className="w-full mb-3 h-96">
           <img className="w-full h-full object-cover rounded-t-md" src={imgSrc} alt={superName} loading="lazy" />
@@ -24,7 +24,7 @@ const Card = (props: ICharacter) => {
         <p className="opacity-50 text-sm">{name}</p>
         <div className="flex flex-col mt-3 mb-8 px-2 space-y-2.5 text-sm">
           <LabelledText label="Occupation" textValue={occupation} />
-          <LabelledText label="Groups" textValue={groups.join(', ')} />
+          <LabelledText label="Groups" textValue={groups} />
           <LabelledText label="First Appearance" textValue={firstApp} />
         </div>
       </div>
