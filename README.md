@@ -9,4 +9,4 @@
 
 ## Demo
 
-![demo gif](github/superhero.gif)
+![demo gif](.github/superhero.gif)
